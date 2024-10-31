@@ -1,0 +1,17 @@
+{
+    "codigo_ibge"   : "código ibge do município",
+    "anomes"        : "ano e mês de referência",
+    "qtd_ben_brc"   : "Qtde de Benefícios de Renda de Cidadania (BRC)",
+    "qtd_ben_bco"   : "Qtde de Benefícios Complementares (BCO)",
+    "qtd_ben_bpi"   : "Qtde de Benefícios Primeira Infância (BPI)",
+    "qtd_ben_bvg"   : "Qtde de Benefícios Variáveis Familiares Gestante (BVG)",
+    "qtd_ben_bvn"   : "Qtde Repassado de Benefícios Variáveis Familiares Nutriz (BVN)",
+    "qtd_ben_bva"   : "Qtde de Benefícios Variáveis Familiares Adolescente (BVA)",
+    "qtd_ben_bv"    : "Qtde de Benefícios Variáveis Familiares Criança (BV)",
+    "qtd_ben_bf"    : "Qtde de benefícios familiares",
+    "qtd_ben_bvbva" : "Qtde de Benefícios Variáveis Familiares Criança (BV) e Adolescente (BVA) somados",
+    "qtd_ben_bet"   : "Qtde de Benefícios Extraordinários de Transição (BET)",
+    "qtd_ben_sus"   : "Qtde de Famílias com suspensão parcial do benefício pelo Seguro Defeso"
+
+}
+
