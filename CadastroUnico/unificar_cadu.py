@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-# Dicionário de mapeamento de código IBGE para UF (Unidade Federativa)
+# Função para mapear o código IBGE para UF
 def get_uf_from_ibge(ibge_code):
     ibge_to_uf = {
         '11': 'RO', '12': 'AC', '13': 'AM', '14': 'RR', '15': 'PA',
@@ -13,26 +13,26 @@ def get_uf_from_ibge(ibge_code):
     }
     return ibge_to_uf.get(str(ibge_code)[:2], 'Desconhecido')
 
-# Lista para armazenar todos os DataFrames
+# Lista para armazenar os DataFrames de cada arquivo
 df_list = []
 
-# Iterar por cada arquivo CSV na pasta
+# Iterar sobre todos os arquivos CSV na pasta
 for arquivo in os.listdir():
     if arquivo.endswith('.csv'):
-        # Ler o CSV
+        # Ler o arquivo CSV
         df = pd.read_csv(arquivo)
         # Adicionar coluna UF com base no código IBGE
         df['UF'] = df['ibge'].apply(get_uf_from_ibge)
-        # Adicionar o DataFrame na lista
+        # Remover a coluna "ibge" pois ela não é necessária no resultado final
+        df = df.drop(columns=['ibge'])
+        # Adicionar o DataFrame à lista
         df_list.append(df)
 
-# Concatenar todos os DataFrames em um único
+# Concatenar todos os DataFrames em um único DataFrame
 df_unificado = pd.concat(df_list, ignore_index=True)
+df_condensado = df_unificado.groupby(['UF', 'anomes'], as_index=True).sum().reset_index()
 
-# Agrupar por unidade federativa (UF) e por ano/mês (anomes)
-df_agrupado = df_unificado.groupby(['UF', 'anomes']).sum().reset_index()
+# Salvar o DataFrame final em um novo arquivo CSV
+df_condensado.to_csv('results/dados_agrupados_por_uf_e_anomes.csv', index=False)
 
-# Salvar o DataFrame final em um arquivo CSV
-df_agrupado.to_csv('dados_unificados_por_uf.csv', index=False)
-
-print("Unificação concluída e salva no arquivo 'dados_unificados_por_uf.csv'")
+print("Arquivo final criado e salvo como 'dados_agrupados_por_uf_e_anomes.csv'")
