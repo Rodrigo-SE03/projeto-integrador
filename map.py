@@ -102,4 +102,6 @@ def render_map(zoom_level=6):
             st.session_state["marker_coords"] = [0,0]
 
     # Retorna as coordenadas clicadas
+
+    #Print name of the region clicked
     return st.session_state["marker_coords"]

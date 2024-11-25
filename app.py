@@ -7,7 +7,7 @@ from openweather import OpenWeather
 
 def load_model():
     
-    tipo_modelo = st.selectbox("Modelo", ["PyTorch", "Scikit-learn"])
+    tipo_modelo = st.selectbox("Modelo", ["Scikit-learn", "PyTorch"])
     if 'is_personalized' not in st.session_state or st.session_state['is_personalized'] != tipo_modelo:
         st.session_state['model'] = None
         st.session_state['is_personalized'] = tipo_modelo
@@ -121,9 +121,11 @@ openweather = OpenWeather()
 if coords:
     lat, lon = coords
     if coords == [0,0] or lat is None or lon is None: st.stop()
+    
     forecast = openweather.forecast(lat, lon)
 
     st.write("## Probabilidade de incêndio")
+    st.write(f'Coodenadas: {lat:.4f}, {lon:.4f}')
     propabilidades = []
 
     table = pd.DataFrame(columns=["Data", "Haverá focos de incêndio", " Razão de Chance", "Threshold"])
