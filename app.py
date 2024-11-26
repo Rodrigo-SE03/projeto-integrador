@@ -90,20 +90,20 @@ with st.expander("Significado das métricas"):
 
     st.markdown("- **Acurácia**: Proporção de previsões corretas.")
 
-    st.latex(r'Accuracy = \frac{TP + TN}{TP + TN + FP + FN}')
+    st.latex(r'Acurácia = \frac{VP + VN}{VP + VN + FP + FN}')
 
     st.markdown("- **Precisão**: Proporção de previsões corretas de focos de incêndio.")
 
-    st.latex(r'Precision = \frac{TP}{TP + FP}')
+    st.latex(r'Precisão = \frac{VP}{VP + FP}')
 
     st.markdown("- **Recall**: Proporção de focos de incêndio corretamente previstos.")
 
-    st.latex(r'Recall = \frac{TP}{TP + FN}')
+    st.latex(r'Recall = \frac{VP}{VP + FN}')
 
     st.markdown("Onde:")
-    st.markdown("- **Verdadeiro Positivo (TP)**: Número de previsões corretas de focos de incêndio.")
+    st.markdown("- **Verdadeiro Positivo (VP)**: Número de previsões corretas de focos de incêndio.")
     st.markdown("- **Falso Positivo (FP)**: Número de previsões incorretas de focos de incêndio.")
-    st.markdown("- **Verdadeiro Negativo (TN)**: Número de previsões corretas de não focos de incêndio.")
+    st.markdown("- **Verdadeiro Negativo (VN)**: Número de previsões corretas de não focos de incêndio.")
     st.markdown("- **Falso Negativo (FN)**: Número de previsões incorretas de não focos de incêndio.")
 
 
