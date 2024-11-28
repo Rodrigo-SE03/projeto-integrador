@@ -73,11 +73,11 @@ with st.expander("O que é uma regressão logística?"):
     st.latex(r'\beta_1, \beta_2, \ldots, \beta_n = \text{Coeficientes}')
     st.latex(r'x_1, x_2, \ldots, x_n = \text{Variáveis independentes}')
 
-    st.markdown("A função logística é uma função sigmóide que retorna valores entre 0 e 1, que pode ser chamado de razão de chance. Se a probabilidade calculada for maior que um limiar (threshold), o evento é classificado como positivo, caso contrário, é classificado como negativo.")
+    st.markdown("A função logística é uma função sigmóide que retorna valores entre 0 e 1, que pode ser chamado de razão de chance. Se a probabilidade calculada for maior que um limiar (Tolerância), o evento é classificado como positivo, caso contrário, é classificado como negativo.")
 
 
 model = load_model()
-threshold = st.number_input("Threshold", min_value=0.00, max_value=1.00, value=0.520, step=0.001 ,format="%.3f")
+threshold = st.number_input("Tolerância", min_value=0.00, max_value=1.00, value=0.520, step=0.001 ,format="%.3f")
 
 metricas = model.metrics(threshold=threshold)
 st.write("## Métricas")
@@ -128,7 +128,7 @@ if coords:
     st.write(f'Coodenadas: {lat:.4f}, {lon:.4f}')
     propabilidades = []
 
-    table = pd.DataFrame(columns=["Data", "Haverá focos de incêndio", " Razão de Chance", "Threshold"])
+    table = pd.DataFrame(columns=["Data", "Haverá focos de incêndio", " Razão de Chance", "Tolerância"])
 
     for prevision in forecast:
         line = []

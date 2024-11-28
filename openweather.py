@@ -26,7 +26,9 @@ class OpenWeather:
         url = f"{self.API_URL}forecast?lat={lat}&lon={lon}&appid={self.api_key}&units=metric"
 
         response = requests.get(url).json()
-        if response["cod"] != '200': raise Exception("Failed to fetch data")
+        if response["cod"] != '200':
+            print(response)
+            raise Exception("Failed to fetch data")
 
         forecast = []
         for prevision in response['list']:
