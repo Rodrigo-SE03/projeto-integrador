@@ -66,6 +66,13 @@ def render_map(zoom_level=6):
         coords = [st_data["last_clicked"]["lat"], st_data["last_clicked"]["lng"]]
         st.session_state["marker_coords"] = coords  # Atualiza as coordenadas do marcador
 
+        # Verificar se o ponto está dentro de Goiás
+        point = Point(coords[1], coords[0])  # (longitude, latitude)
+        print(goias_polygon.contains(point))
+        if goias_polygon.contains(point) == False:
+            st.session_state["marker_coords"] = None
+            return None
+
         # Atualiza o mapa com o novo marcador
         mapa = folium.Map(
             location=goias_center,
@@ -96,12 +103,11 @@ def render_map(zoom_level=6):
         # Renderizar novamente o mapa
         st_folium(mapa, width=700, height=500)
 
-        # Verificar se o ponto está dentro de Goiás
-        point = Point(coords[1], coords[0])  # (longitude, latitude)
-        if goias_polygon.contains(point) == False:
-            st.session_state["marker_coords"] = [0,0]
-
     # Retorna as coordenadas clicadas
 
     #Print name of the region clicked
-    return st.session_state["marker_coords"]
+    if st.session_state["marker_coords"] is not None:
+        coords = st.session_state["marker_coords"].copy()
+    else:
+        coords = None
+    return coords
